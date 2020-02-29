@@ -1,0 +1,54 @@
+//////////// ejercicio venta de libros desde casa
+  
+payable contract VentaLibros =
+  
+  record libro = {
+    nombre: string,
+    autor: string,
+    precio: int,
+    emailVendedor: string,
+    estado: string,
+    dirCreador: address}
+
+  record state = {
+    libros: map(int , libro) , 
+    librosCnt: int}
+  
+  entrypoint init()  = {
+    libros = {} , 
+    librosCnt = 0}
+
+  stateful entrypoint inicializo()  = 
+    put (state {libros = {} , librosCnt = 0}  ) 
+
+  entrypoint get_libros_cnt() : int =
+    state.librosCnt
+
+  stateful entrypoint inc_libros_cnt() =
+    let indice = get_libros_cnt() + 1
+    put (state {librosCnt = indice})
+
+  stateful entrypoint set_libros_cnt(nro : int) =
+    put (state {librosCnt = nro})
+
+  stateful entrypoint add_libro(nombre' : string, autor' : string, precio' : int, emailVendedor' : string) = 
+    let nuevoIndice = get_libros_cnt() + 1
+    let nuevoLibro= {nombre = nombre',
+      autor = autor',
+      precio = precio',
+      emailVendedor = emailVendedor',
+      estado = "A LA VENTA",
+      dirCreador = Call.caller}
+    put (state {libros[nuevoIndice] = nuevoLibro,
+      librosCnt = nuevoIndice})
+
+  entrypoint get_libro(nroLibro : int) : libro = 
+    switch(Map.lookup(nroLibro, state.libros))
+      None => abort("No existe el libro solicitado")
+      Some(xxx) => xxx
+              
+  payable stateful entrypoint comproLibro(nroLibro : int) =
+    let libroAux = get_libro(nroLibro) 
+    Chain.spend(libroAux.dirCreador, libroAux.precio)
+    let updatedLibros = state.libros{ [nroLibro].estado = "VENDIDO" }
+    put(state{ libros = updatedLibros })
