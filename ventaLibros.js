@@ -181,11 +181,6 @@ async function  inicio() {
 
 }
 
-
-
-
-
-
   
 function renderLibros() {
 
