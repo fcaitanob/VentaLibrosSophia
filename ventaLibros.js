@@ -91,22 +91,10 @@ async function callStatic(func, args) {
 
 //Create a asynchronous write call for our smart contract
 async function contractCall(func, args, value) {
-  console.log( "debug: funcion contractCall, value: " + value);
-  console.log( "debug: funcion contractCall, args: " + args);
-	
   const contract = await client.getContractInstance(contractSource, {contractAddress});
-  
-  
-  console.log( "debug: funcion contractCall, func: " + func);
-  console.log( "debug: funcion contractCall, value: " + value);
-  console.log( "debug: funcion contractCall, args: " + args);
-  
   
   //Make a call to write smart contract func, with aeon value input
   const calledSet = await contract.call(func, args, {amount: value}).catch(e => console.error(e));
-
-  console.log( "debug: funcion contractCall, calledSet: " + calledSet);
-
 
   return calledSet;
 } 
@@ -146,20 +134,16 @@ async function  inicio() {
 
   
   
-  console.log( "debug: funcion inicio, librosCnt inicial: " + librosCnt);
   client =  await Ae.Aepp();
 
   librosCnt = 888 ;
-  console.log( "debug: funcion inicio, librosCnt inicial2: " + librosCnt);
   librosCnt =  await callStatic('get_libros_cnt', []);
-  console.log( "debug: funcion inicio, librosCnt inicial3: " + librosCnt);
 
   
   //cargo los libros en un array global
   var i = 0;
   for (let i = 1; i <= librosCnt; i++) {
     const libro = await callStatic('get_libro', [i]);
-	console.log( "debug: funcion inicio, librosCnt inicial4 en loop: " + libro.nombre);
 
     librosArray.push({
       libroNombre: libro.nombre,
@@ -170,7 +154,6 @@ async function  inicio() {
       libroDirCreador: libro.dirCreador,
 	  indice: i
     }) ;
-	console.log( "debug: funcion inicio, librosCnt inicial5 en loop: " + librosArray[i-1].libroNnombre);
 
   }
   renderLibros(); 
@@ -189,13 +172,11 @@ async function  inicio() {
   
 function renderLibros() {
 
-	console.log("debug: funcion renderLibros, cantidad de libros: " + librosCnt);
 	var div = document.getElementById('agregarLibros');
 	div.innerHTML = "";
 
 	for (var i=1; i<=librosCnt; i++) 
 		{ 
-		console.log("debug: funcion renderLibros, nombre del libro dentro del for1:  " + librosArray[i-1].libroNombre);
 
 		texto = `		
 		<table style="text-align:center;">
@@ -228,28 +209,8 @@ function renderLibros() {
 		` ;
 		div.innerHTML += texto;
 		//document.write(texto) ; 
-		console.log("debug: funcion renderLibros, nombre del libro dentro del for2:  " + librosArray[i-1].libroNombre);
 		}
-	//$('#librosParaVender').html(rendered);
 } 
-
-
-
-async function compro_libro_pr(nro) {
-
-	alert("valor del parametroxxxx: " + nro);
-	console.log( "debug: funcion compro_libro, i: " + nro);
-	console.log( "debug: funcion compro_libro, precio: " + librosArray[nro-1].libroPrecio);
-	var value = librosArray[nro-1].libroPrecio ;
-	var nroLibro = nro ;
-	console.log( "debug: funcion compro_libro, precioVariable: " + value);
-
-
-	await contractCall('comproLibro', [nroLibro], value);
-	//await inicio();	// recarga pantalla
-
-
-}
 
 
 
@@ -260,27 +221,17 @@ async function compro_libro() {
 	var i = document.getElementById("libroNro").value ;
 	document.getElementById("libroNro").value = null ;
 	
-	alert("xxxxxxxxxxx> " + i);
 
 	if (i > 0 && i <= librosCnt) { // proceso la compra si el indice es valido
 
 			mostrarCargandoCompra();
 
-			console.log( "debug: funcion compro_libro, i: " + i);
-			console.log( "debug: funcion compro_libro, precio: " + librosArray[i-1].libroPrecio);
 			var value = librosArray[i-1].libroPrecio ;
 			var nroLibro = i ;
-			console.log( "debug: funcion compro_libro, precioVariable: " + value);
 			let index = event.target.id;
-
-
 
 			await contractCall('comproLibro', [nroLibro], value);
 			
-			//Hide the loading animation after async calls return a value
-			//const foundIndex = librosArray.findIndex(libro => libro.index == event.target.id);
-		  
-
 			ocultarCargandoCompra();
 
 			await inicio();	// recarga pantalla
@@ -292,12 +243,8 @@ async function compro_libro() {
 
 async function inc_libros_cnt() {
 	
-	console.log("debug: ingreso a inc_libros_cnt");
 	await contractCall('inc_libros_cnt', [], 0);
 	librosCnt = await callStatic('get_libros_cnt', []);
-	alert("Cantidad de libros: " + librosCnt);
-	txt = "Cantidad de libros: " + librosCnt ;
-    document.getElementById("demoDos").innerHTML = txt;
 
 } 
  
@@ -315,8 +262,6 @@ async function alta_libro() {
 	txt = txt + " Correo: " + document.getElementById("libroVendedorCorreo").value ;
 
 
-    //document.getElementById("demoTres").innerHTML = txt;
-	console.log("debug: " + txt);
 	
 	var nombre = document.getElementById("libroNombre").value ;
 	var autor = document.getElementById("libroAutor").value ;
