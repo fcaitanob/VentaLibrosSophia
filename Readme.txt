@@ -8,9 +8,38 @@ Es una adaptación del código del curso, donde se puede interactuar con blockch
 
 Al ingresar un libro para la venta, se genera un elemento con estado "A LA VENTA"
 
-Para comprar un libros se debe ingresar el número a comprar y presionar el botón "Comprar Libro por Nro".
+Para comprar un libro se debe ingresar el número a comprar y presionar el botón "Comprar Libro por Nro".
+
+Para ejecutar utilizar programa en daps de https://base.aepps.com/
+ https://base.aepps.com/browser/https:/fcaitanob.github.io/VentaLibrosSophia/
+
+Las instrucciones para utilizar aepps se consiguen en el curso y desafío: https://dacade.org/ae-dev-101/introduction
 
 Saludos,
 
 fcaitanob@hotmail.com
 
+
+English:
+
+
+Book sales using Aeternity Blockchain
+-----------------------------------------------
+
+The application allows you to enter new books for sale, with an amount to be used as a reference at the time of purchase.
+It is intended for an interested party to buy and contact the seller's email.
+The objective was to test the platform and therefore it does not have all the necessary validations to work in production.
+It is an adaptation of the course code, where you can interact with blockchain.
+
+When entering a book for sale, an item with status "FOR SALE" is generated
+
+To buy a book you must enter the number to buy and press the "Buy Book by No." button.
+
+To execute the program you must use https://base.aepps.com/
+ https://base.aepps.com/browser/https:/fcaitanob.github.io/VentaLibrosSophia/
+
+The instructions are on the course: https://dacade.org/ae-dev-101/introduction
+
+Regards,
+
+fcaitanob@hotmail.com

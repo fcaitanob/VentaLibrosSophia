@@ -322,11 +322,11 @@ async function alta_libro() {
 	var autor = document.getElementById("libroAutor").value ;
 	var precio = document.getElementById("libroPrecio").value ;
 	var correo = document.getElementById("libroVendedorCorreo").value ;
-	await contractCall('add_libro', [nombre, autor, precio, correo], 0);
+	await contractCall('add_libro', [nombre, autor, (parseInt(precio, 10)), correo], 0);
 
 	document.getElementById("libroNombre").value = "";
 	document.getElementById("libroAutor").value = "";
-	document.getElementById("libroPrecio").value = "";
+	document.getElementById("libroPrecio").value = 0;
 	document.getElementById("libroVendedorCorreo").value = "";
 	
 	await inicio();	// recarga pantalla
