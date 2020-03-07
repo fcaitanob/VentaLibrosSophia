@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Venta de Libros</title>
+    <title>Book sale</title>
 	
 
 	
@@ -20,8 +20,8 @@
 <script src="https://unpkg.com/@aeternity/aepp-sdk@6.1.2/dist/aepp-sdk.browser-script.js"></script> 
 
 
-<input type="text" class="form-control" id="libroNro" placeholder="Nro de libro a Comprar">
-<button onclick="compro_libro()">Comprar Libro por Nro</button>
+<input type="text" class="form-control" id="libroNro" placeholder="Book Now to Buy">
+<button onclick="compro_libro()">Buy Book by Nro</button>
 
   
 <form>
@@ -32,18 +32,18 @@
 	<!-- Titulo -->
 	<div class="container">
 			<h1 class="text-center">____________________</h1>
-		    <h1 class="text-center">Vende tus libros ahora</h1>
+		    <h1 class="text-center">Sell ​​your books now</h1>
 	</div>
 
 	  <!-- Cargando.......... -->
 	  <div id="message" class="text-center">
 		<div id="loader" class="text-center">
 		  <img src="cargando.gif">
-		  <div><b>CARGANDO</b></div>
+		  <div><b>LOADING</b></div>
 		</div>
 		<div id="loaderCompra" class="text-center">
 		  <img src="cargandoCompra.gif">
-		  <div><b>Comprando...</b></div>
+		  <div><b>LOADING...</b></div>
 		</div>
 
 	  </div>
@@ -51,16 +51,16 @@
 
 	<div class="form-group col" >
 		<input type="text" class="form-control" id="libroNombre" 
-		placeholder="Nombre del libro">
+		placeholder="Name of the book">
 	</div>
 	<div class="form-group col" >
-		<input type="text" class="form-control" id="libroAutor" placeholder="Autor">
+		<input type="text" class="form-control" id="libroAutor" placeholder="Author">
 	</div>
 	<div class="form-group col" >
-		<input type="number" class="form-control" id="libroPrecio" placeholder="Precio">
+		<input type="number" class="form-control" id="libroPrecio" placeholder="Price">
 	</div>
 	<div class="form-group col" >
-		<input type="email" class="form-control" id="libroVendedorCorreo" placeholder="Email del vendedor" required>
+		<input type="email" class="form-control" id="libroVendedorCorreo" placeholder="Seller Email" required>
 	</div>
 
 	  <!-- FIN. Alta del libro a vender -->
@@ -71,7 +71,7 @@
 
 
 </form>
-	<button onclick="alta_libro()">Alta de nuevo libro para vender</button>
+	<button onclick="alta_libro()">New book to sell</button>
 	<p id="demoTres"></p>
 	
 
@@ -80,7 +80,7 @@
 
 	<!-- Titulo -->
 	<div>
-	    <h1 class="text-center">Libros para la venta</h1>
+	    <h1 class="text-center">Books for sale</h1>
 	</div>
 
 
